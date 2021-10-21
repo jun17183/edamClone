@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edam.mapper.GoodsMapper">
+
+    <!-- 굿즈 시리즈 종류 -->
+    <select id="getGoodsSortList" resultType="GoodsSortEntity">
+        select sort, sort_id
+        from goods_sort
+        order by sort_id desc
+    </select>
+
+    <!-- 선택한 굿즈 시리즈 -->
+    <select id="getChoiceSort" resultType="GoodsSortEntity">
+        select sort, sort_id, banner
+        from goods_sort
+        where sort_id = #{sort_id}
+    </select>
+
+    <!-- 판매 인기순 -->
+    <select id="popularList" resultType="GoodsEntity">
+        select nm, price, src, sort, sort_id, amount, sales
+        from goods
+        where sort_id = #{sort_id} and amount > 0
+        order by sales desc
+    </select>
+
+    <!-- 판매 인기순 (sold out) -->
+    <select id="popularListSoldOut" resultType="GoodsEntity">
+        select nm, price, src, sort, sort_id, amount, sales
+        from goods
+        where sort_id = #{sort_id} and amount = 0
+        order by sales desc
+    </select>
+
+    <!-- 높은 가격순 -->
+    <select id="highPriceList" resultType="GoodsEntity">
+        select nm, price, src, sort, sort_id, amount, sales
+        from goods
+        where sort_id = #{sort_id} and amount > 0
+        order by price desc
+    </select>
+
+    <!-- 높은 가격순 (sold out) -->
+    <select id="highPriceListSoldOut" resultType="GoodsEntity">
+        select nm, price, src, sort, sort_id, amount, sales
+        from goods
+        where sort_id = #{sort_id} and amount = 0
+        order by price desc
+    </select>
+
+    <!-- 낮은 가격순 -->
+    <select id="lowPriceList" resultType="GoodsEntity">
+        select nm, price, src, sort, sort_id, amount, sales
+        from goods
+        where sort_id = #{sort_id} and amount > 0
+        order by price
+    </select>
+
+    <!-- 낮은 가격순 (sold out) -->
+    <select id="lowPriceListSoldOut" resultType="GoodsEntity">
+        select nm, price, src, sort, sort_id, amount, sales
+        from goods
+        where sort_id = #{sort_id} and amount = 0
+        order by price
+    </select>
+
+    <!-- 총 상품 갯수 -->
+    <select id="allGoodsCount" resultType="int">
+        select count(*)
+        from goods
+        where sort_id = #{sort_id}
+    </select>
+</mapper>

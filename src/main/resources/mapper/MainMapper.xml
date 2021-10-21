@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edam.mapper.MainMapper">
+
+   <!-- New Product -->
+    <select id="newProduct" resultType="GoodsEntity">
+        select nm, price, src
+        from goods
+        order by regd desc
+        limit 3
+    </select>
+
+    <!-- Best Product (판매량순) -->
+    <select id="bestProduct" resultType="GoodsEntity">
+        select nm, price, src
+        from goods
+        order by sales desc
+        limit 5
+    </select>
+
+    <!-- MDs Pick (사실 랜덤 4개) -->
+    <select id="mdsPick" resultType="GoodsEntity">
+        select nm, price, src
+        from goods
+        order by rand()
+        limit 4
+    </select>
+
+    <!-- Steady Seller (재고가 가장 많이 남은) -->
+    <select id="steadySeller" resultType="GoodsEntity">
+        select nm, price, src
+        from goods
+        order by amount desc
+        limit 5
+    </select>
+</mapper>

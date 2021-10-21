@@ -1,0 +1,19 @@
+#side_bar{
+    display: inline-block;
+    position: fixed;
+    box-sizing: border-box;
+    top:34%;
+    right: 0px;
+    background-color: antiquewhite;
+    width: 40px;
+    height: 320px;
+    z-index: 9;
+}
+
+#side_bar>div{
+    box-sizing: border-box;
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+    border:1px solid gray;
+}
